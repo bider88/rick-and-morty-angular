@@ -13,7 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LayoutModule } from '@angular/cdk/layout';
 
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { RouterModule } from '@angular/router';
@@ -32,7 +32,7 @@ const materials = [
 ];
 
 const components = [
-  NavbarComponent,
+  LayoutComponent,
   FooterComponent
 ];
 
