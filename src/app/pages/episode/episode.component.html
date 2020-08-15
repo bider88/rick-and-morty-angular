@@ -2,4 +2,17 @@
 <div *ngIf="loading" class="container-loading">
   <mat-spinner></mat-spinner>
 </div>
-<app-card-episode [episode]="episode" *ngIf="episode" [onlyOne]="true"></app-card-episode>
+<app-card-episode [episode]="episode" *ngIf="episode" [onlyOne]="true">
+  <div class="list-characters">
+    <p>Characters:</p>
+    <mat-list role="list">
+      <ng-container *ngFor="let character of characters">
+        <mat-list-item role="listitem">
+          <img [src]="character.image" alt="character.name" class="avatar">
+          {{ character.name }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </div>
+</app-card-episode>

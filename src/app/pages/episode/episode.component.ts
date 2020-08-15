@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { EpisodeAbstractComponent } from '../abstract-classes/episode-abstract.class';
 import { EpisodeService } from './../services/episode.service';
+import { CharacterModel } from './../../models/character.model';
 import { EpisodeModel } from '../../models/episode.model';
 import { Ng2IzitoastService } from 'ng2-izitoast';
 
@@ -14,6 +14,7 @@ import { Ng2IzitoastService } from 'ng2-izitoast';
 export class EpisodeComponent extends EpisodeAbstractComponent implements OnInit {
 
   episode: EpisodeModel;
+  characters: CharacterModel[];
 
   constructor(
     private episodeService: EpisodeService,
@@ -30,11 +31,36 @@ export class EpisodeComponent extends EpisodeAbstractComponent implements OnInit
   getEpisode(id: number): void {
     this.loading = true;
     const subscription = this.episodeService.getEpisode(id).subscribe(
-      (res: EpisodeModel) => this.episode = res,
+      (res: EpisodeModel) => {
+        this.episode = res;
+        this.getIdsFromCharacters();
+      },
       error => this.handleError(error),
       () => this.loading = false
     );
     this.subscriptions.push(subscription);
+  }
+
+  getCharacters(ids: number[]): void {
+    this.loading = true;
+    const subscription = this.episodeService.getCharacters(ids).subscribe(
+      (res: CharacterModel[]) => {
+        this.characters = res;
+      },
+      error => this.handleError(error),
+      () => this.loading = false
+    );
+    this.subscriptions.push(subscription);
+  }
+
+  getIdsFromCharacters(): void {
+    const idCharacters = [];
+    this.episode.characters.forEach(character => {
+      const lastPosition = character.lastIndexOf('/');
+      const id = character.substring((lastPosition + 1), character.length);
+      idCharacters.push(Number(id));
+    });
+    this.getCharacters(idCharacters);
   }
 
   getParam(): void {

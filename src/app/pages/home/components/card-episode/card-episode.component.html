@@ -6,6 +6,7 @@
   <mat-card-content>
     <p>Episode: {{ episode?.episode }}</p>
     <p>Total Characters: {{ episode?.characters.length }}</p>
+    <ng-content select=".list-characters"></ng-content>
   </mat-card-content>
   <mat-card-actions class="end">
     <a [routerLink]="['episode', episode?.id]" mat-button *ngIf="!onlyOne">View episode</a>
