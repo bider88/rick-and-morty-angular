@@ -1,2 +1,12 @@
 <h1>Episodes</h1>
+<div *ngIf="loading" class="container-loading">
+  <mat-spinner></mat-spinner>
+</div>
 <app-card-episode *ngFor="let episode of episodes; trackBy:trackByMethod" [episode]="episode"></app-card-episode>
+<mat-paginator [length]="info?.count"
+              hidePageSize
+              (page)="pageEvent($event)"
+              [pageSize]="20"
+              [pageIndex]="pageIndex"
+              [pageSizeOptions]="[20]">
+</mat-paginator>

@@ -8,12 +8,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-
 
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,7 +26,9 @@ const materials = [
   MatIconModule,
   MatListModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule
 ];
 
 const components = [
