@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+  width: 85%;
+  min-height: calc(100vh - 131px);
+  margin: 0 auto;
+  padding: 10px 0 0;
+}
+
+a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    color: rgb(248, 255, 221);
+  }
+}

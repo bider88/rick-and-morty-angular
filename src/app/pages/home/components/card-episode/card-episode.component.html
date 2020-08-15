@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ episode.name }}</mat-card-title>
+    <mat-card-subtitle>{{ episode.air_date }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Episode: {{ episode.episode }}</p>
+    <p>Total Characters: {{ episode.characters.length }}</p>
+  </mat-card-content>
+  <mat-card-actions class="end">
+    <a [routerLink]="['episode', episode.id]" mat-button>View episode</a>
+  </mat-card-actions>
+</mat-card>
