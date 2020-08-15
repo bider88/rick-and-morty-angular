@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardEpisodeComponent implements OnInit {
 
   @Input() episode: EpisodeModel;
+  @Input() onlyOne: boolean;
 
   constructor() { }
 

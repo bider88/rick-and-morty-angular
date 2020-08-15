@@ -14,8 +14,12 @@ export class EpisodeService {
     private http: HttpClient
   ) { }
 
-  getEpisodes(page = 1): Observable<EpisodeResponseModel> {
+  getEpisodes(page: number = 1): Observable<EpisodeResponseModel> {
     const params = new HttpParams().set('page', page.toString());
     return this.http.get<EpisodeResponseModel>(`${environment.urlApi}episode`, { params });
+  }
+
+  getEpisode(id: number): Observable<EpisodeModel> {
+    return this.http.get<EpisodeModel>(`${environment.urlApi}episode/${id}`);
   }
 }

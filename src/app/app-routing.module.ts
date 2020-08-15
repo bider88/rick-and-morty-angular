@@ -5,8 +5,8 @@ import { EpisodeComponent } from './pages/episode/episode.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'episode', component: EpisodeComponent },
-  { path: 'episode/:id', component: EpisodeComponent }
+  { path: 'episode/:id', component: EpisodeComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

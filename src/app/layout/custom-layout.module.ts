@@ -10,6 +10,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { Ng2IziToastModule } from 'ng2-izitoast';
 
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -28,7 +33,10 @@ const materials = [
   MatDividerModule,
   MatCardModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDialogModule
 ];
 
 const components = [
@@ -38,7 +46,8 @@ const components = [
 
 const modules = [
   RouterModule,
-  HttpClientModule
+  HttpClientModule,
+  Ng2IziToastModule
 ];
 
 @NgModule({

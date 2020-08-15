@@ -1,38 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { EpisodeAbstractComponent } from '../abstract-classes/episode-abstract.class';
 import { EpisodeService } from './../services/episode.service';
 import { InfoModel } from '../../models/info.model';
 import { EpisodeResponseModel } from '../../models/episode-response.model';
 import { EpisodeModel } from '../../models/episode.model';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent extends EpisodeAbstractComponent implements OnInit {
 
   info: InfoModel;
   episodes: EpisodeModel[];
-  loading: boolean;
   page: number;
   pageIndex: number;
-  subscriptions: Subscription[] = [];
 
   constructor(
     private episodeService: EpisodeService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    iziToast: Ng2IzitoastService
+  ) {
+    super(iziToast);
+  }
 
   ngOnInit(): void {
     this.getPage();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   getEpisodes(page = 1): void {
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.info = res.info;
         this.episodes = res.results;
       },
-      error => console.error(error),
+      error => this.handleError(error),
       () => this.loading = false
     );
     this.subscriptions.push(subscription);
@@ -75,5 +74,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }
